@@ -37,8 +37,8 @@
 
 1. **Clone repository ini:**
 ```bash
-   git clone [https://github.com/sariidwi/codespaces-blank.git](https://github.com/sariidwi/codespaces-blank.git)
-   cd codespaces-blank
+   git clone https://github.com/sariidwi/Aplikasi-Dashboard-Frontend-y.git
+   cd Aplikasi-Dashboard-Frontend-y
 2. **Jalankan container dengan Docker Compose:**
    ```Bash
       docker compose up -d --build
