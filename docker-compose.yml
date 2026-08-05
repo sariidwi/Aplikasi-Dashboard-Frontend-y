@@ -1,0 +1,33 @@
+services:
+  api:
+    image: bektigalan/test:latest
+    container_name: sitewatch-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - sitewatch-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sitewatch-frontend-dwi
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "7005:80"
+    networks:
+      - sitewatch-net
+
+networks:
+  sitewatch-net:
+    driver: bridge
